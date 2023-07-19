@@ -11,7 +11,7 @@ contract SplitsFactoryWrapper {
 
     function createVirtualSplit(address[] memory accounts, uint32[] memory allocations) external {
         address split = Lib0xSplits.predictDeterministicAddress(accounts, allocations);
-        emit SplitsInfo(split, accounts, allocations, address(0), 0);
+        if (split.code.length == 0) emit SplitsInfo(split, accounts, allocations, address(0), 0);
     }
 
     function createSplit(address[] memory accounts, uint32[] memory allocations) external {
